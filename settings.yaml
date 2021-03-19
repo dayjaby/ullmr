@@ -1,0 +1,17 @@
+dialect: common
+ports:
+  uart1:
+    baudrate: 57600
+    component_id: 1
+    messages:
+    - id: HEARTBEAT
+      forward: uart2
+      toggle: gpio1
+    - id: COMMAND_LONG
+      filter: m.command == MAV_CMD_DO_CONTROL_VIDEO
+      forward: uart2
+  uart2:
+    baudrate: 115200
+    component_id: 2
+  gpio1:
+    pullup: true
